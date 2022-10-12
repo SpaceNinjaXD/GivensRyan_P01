@@ -6,35 +6,31 @@ namespace Inheritance
 {
     public class Bullet : Projectile
     {
-        private const int _damage = 1;
+        [SerializeField] public int _damage = 1;
 
         protected override void Impact(Collision otherCollision)
         {
+
+
             IDamagable damag = otherCollision.gameObject.GetComponent<IDamagable>();
 
-            if(damag != null)
+            if (damag != null)
             {
                 damag.Damage(_damage);
 
             }
+            if (otherCollision.gameObject.tag != "wall")
+            {
+                ImpactFeedback();
+            }
 
-            ImpactFeedback();
 
             Destroy(this.gameObject);
         }
-
-
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
-}
+}     
+            
+
+
+
+

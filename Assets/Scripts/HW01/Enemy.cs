@@ -19,13 +19,8 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Player player = collision.gameObject.GetComponent<Player>();
-        if (player != null)
-        {
-
-           // PlayerImpact(player);
-            ImpactFeedback();
-        }
+        IDamagable damag = collision.gameObject.GetComponent<IDamagable>();
+        damag.Damage(1000);
     }
 
     protected virtual void Death()
@@ -60,13 +55,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void FixedUpdate()
-    {
-        Move();
-    }
+    
 
-    public void Move()
-    {
-        
-    }
+
 }

@@ -8,6 +8,7 @@ public class Turret : MonoBehaviour
     public GameObject projectile;
     public Transform Barrel;
     [SerializeField] AudioClip _fire;
+    public bool isTrueTurrent = true;
     void Awake()
     {
         _cam = Camera.main;
@@ -22,8 +23,9 @@ public class Turret : MonoBehaviour
         rot.x = rot.z = 0;
         transform.rotation = Quaternion.Euler(rot);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isTrueTurrent != false)
         {
+
             if (_fire != null)
             {
                 AudioHelper.PlayClip2D(_fire, .5f);
